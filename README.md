@@ -1,4 +1,4 @@
-# 🏥 RoboSurgery - Advanced Robotic Surgery Platform
+<!-- # 🏥 RoboSurgery - Advanced Robotic Surgery Platform
 
 <div align="center">
 
@@ -204,4 +204,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **© 2024 RoboSurgery Platform. Built with ❤️ for better healthcare.**
 
-</div>
+</div> -->

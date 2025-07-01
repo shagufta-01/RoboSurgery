@@ -24,6 +24,28 @@ import {
   Scale,
   ArrowUpRight
 } from 'lucide-react';
+// import aims from '../assets/aims.png'
+import aims2 from '../assets/aims2.png'
+import aims3 from '../assets/aims3.png'
+import aims1 from '../assets/aims1.png'
+
+const diseases = [
+  "Diabetes",
+  "Hypertension",
+  "Heart Disease",
+  "Asthma",
+  "Cancer",
+  "Arthritis",
+  "Thyroid",
+  "Migraine",
+  "Depression",
+  "Skin Allergy",
+  "Tuberculosis",
+  "Dengue"
+];
+
+
+
 import hari from '../assets/Dr_Harit_Chaturvedi_new_0_5f2633c1ed.jpg'
 import subash from '../assets/Dr_SG_da91d515bc.jpg';
 import skm from '../assets/sks_marya_6b4c17da24.png';
@@ -34,6 +56,17 @@ import abhideep from '../assets/Dr_Abhideep_Chaudhary_9f61965dec.jpg';
 import ranjeesh from '../assets/ranjeesh.jpg';
 const HomePage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+const images =[aims2,aims1,aims3]
+const [current,setCurrent] = useState(0)
+
+useEffect(()=>{
+const interval = setInterval(()=>{
+setCurrent((prev)=> (prev+1)%images.length)
+},4000)
+return ()=>clearInterval(interval)
+
+},[])
 
   const specialties = [
     {
@@ -250,7 +283,8 @@ const HomePage = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
-            backgroundImage: 'url(https://images.pexels.com/photos/4386334/pexels-photo-4386334.jpeg?auto=compress&cs=tinysrgb&w=1200)'
+            backgroundImage: `url(${images[current]})`,
+            // backgroundImage: 'url(aims)'
           }}
         ></div>
         
@@ -286,7 +320,7 @@ const HomePage = () => {
       </section>
 
       {/* About Robotic Surgery */}
-      <section id="about" className="py-20 bg-gray-50">
+      {/* <section id="about" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
             <div>
@@ -323,7 +357,24 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+ <div className="bg-white py-12 px-6 md:px-20">
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+        Common Diseases We Help Manage
+      </h2>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        {diseases.map((disease, index) => (
+          <div
+            key={index}
+            className="bg-blue-600 hover:bg-blue-100 text-white hover:text-black font-medium text-center py-4 px-2 rounded-xl shadow-md transition-all duration-300"
+          >
+            {disease}
+          </div>
+        ))}
+      </div>
+    </div>
+
 
       {/* Our Specialties */}
       <section id="specialties" className="py-20 bg-white">
