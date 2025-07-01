@@ -30,18 +30,19 @@ import aims3 from '../assets/aims3.png'
 import aims1 from '../assets/aims1.png'
 
 const diseases = [
-  "Diabetes",
-  "Hypertension",
-  "Heart Disease",
-  "Asthma",
-  "Cancer",
-  "Arthritis",
-  "Thyroid",
-  "Migraine",
-  "Depression",
-  "Skin Allergy",
-  "Tuberculosis",
-  "Dengue"
+  "Head & Neck Surgery",
+  "Robotic Urology",
+  "GI Surgery",
+  "Gynecology Surgery",
+  "Cardiac Surgery",
+  "Orthopedic Surgery",
+  "Thoracic Surgery",
+  "Robotic Oncology",
+  "Neurosurgery",
+  "Pediatric Surgery",
+  "Bariatric Surgery",
+  "Vascular Surgery",
+  // "Plastic Surgery"
 ];
 
 
