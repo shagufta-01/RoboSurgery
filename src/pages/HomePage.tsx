@@ -364,6 +364,7 @@ return ()=>clearInterval(interval)
         Common Diseases We Help Manage
       </h2>
 
+
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {diseases.map((disease, index) => (
           <div
