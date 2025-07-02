@@ -360,9 +360,9 @@ return ()=>clearInterval(interval)
         </div>
       </section> */}
  <div className="bg-white py-12 px-6 md:px-20">
-      <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
+      {/* <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">
         Common Diseases We Help Manage
-      </h2>
+      </h2> */}
 
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
