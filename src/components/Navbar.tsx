@@ -50,19 +50,19 @@ const Navbar = () => {
               onClick={() => scrollToSection('specialties')}
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >
-              Specialties
+              About
             </button>
             <button
               onClick={() => scrollToSection('surgeons')}
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >
-              Surgeons
+             Doctors
             </button>
             <button
-              onClick={() => scrollToSection('testimonials')}
+              onClick={() => scrollToSection('service')}
               className="text-gray-700 hover:text-blue-600 transition-colors"
             >
-              Testimonials
+              Service
             </button>
             <div className="flex items-center space-x-4">
               <a href="tel:+1234567890" className="flex items-center space-x-1 text-blue-600 hover:text-blue-700">

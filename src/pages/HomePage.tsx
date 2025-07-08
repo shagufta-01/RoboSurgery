@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ChevronDown, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -28,7 +29,9 @@ import {
 import aims2 from '../assets/aims2.png'
 import aims3 from '../assets/aims3.png'
 import aims1 from '../assets/aims1.png'
-
+import p1 from '../assets/p1.png'
+import p2 from '../assets/p2.png'
+// import p3 from '../assets/p3.jpg'
 const diseases = [
   "Head & Neck Surgery",
   "Robotic Urology",
@@ -44,8 +47,20 @@ const diseases = [
   "Vascular Surgery",
   // "Plastic Surgery"
 ];
-
-
+ const colors = [
+    'bg-red-600 hover:bg-red-100',
+    'bg-blue-600 hover:bg-blue-100', 
+    'bg-green-600 hover:bg-green-100',
+    'bg-yellow-600 hover:bg-yellow-100',
+    'bg-purple-600 hover:bg-purple-100',
+    'bg-pink-600 hover:bg-pink-100',
+    'bg-indigo-600 hover:bg-indigo-100',
+    'bg-orange-600 hover:bg-orange-100',
+    'bg-teal-600 hover:bg-teal-100',
+    'bg-cyan-600 hover:bg-cyan-100',
+    'bg-lime-600 hover:bg-lime-100',
+    'bg-emerald-600 hover:bg-emerald-100'
+  ];
 
 import hari from '../assets/Dr_Harit_Chaturvedi_new_0_5f2633c1ed.jpg'
 import subash from '../assets/Dr_SG_da91d515bc.jpg';
@@ -56,7 +71,43 @@ import anant from '../assets/Dr_Anant_Kumar_new_picture_8602360343.jpg';
 import abhideep from '../assets/Dr_Abhideep_Chaudhary_9f61965dec.jpg';
 import ranjeesh from '../assets/ranjeesh.jpg';
 const HomePage = () => {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  
+ const [selectedVisa, setSelectedVisa] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+ const visaOptions = [
+    { value: 'tourist', label: 'Tourist Visa', icon: '🏖️' },
+    { value: 'business', label: 'Business Visa', icon: '💼' },
+    { value: 'student', label: 'Student Visa', icon: '🎓' },
+    { value: 'work', label: 'Work Visa', icon: '💼' },
+    { value: 'family', label: 'Family Visa', icon: '👨‍👩‍👧‍👦' },
+    { value: 'transit', label: 'Transit Visa', icon: '✈️' },
+    { value: 'medical', label: 'Medical Visa', icon: '🏥' },
+    { value: 'investor', label: 'Investor Visa', icon: '💰' }
+  ];
+  
+   const services = [
+    {
+      icon: <Globe className="h-8 w-8 text-blue-600" />,
+      title: "Global Visa Processing",
+      description: "Expert handling of visa applications for over 50 countries worldwide with high success rates."
+    },
+    {
+      icon: <Users className="h-8 w-8 text-green-600" />,
+      title: "Personalized Consultation",
+      description: "One-on-one guidance from certified immigration consultants tailored to your specific needs."
+    },
+    {
+      icon: <Clock className="h-8 w-8 text-purple-600" />,
+      title: "Fast Track Processing",
+      description: "Expedited visa processing services to meet your urgent travel and immigration deadlines."
+    },
+    {
+      icon: <Award className="h-8 w-8 text-orange-600" />,
+      title: "Document Preparation",
+      description: "Complete assistance with document collection, verification, and preparation for your application."
+    }
+  ];
+
 
 const images =[aims2,aims1,aims3]
 const [current,setCurrent] = useState(0)
@@ -75,14 +126,14 @@ return ()=>clearInterval(interval)
       name: 'Head & Neck Surgery',
       description: 'Advanced robotic procedures for head and neck conditions',
       icon: Eye,
-      image: 'https://images.pexels.com/photos/5327580/pexels-photo-5327580.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: p1
     },
     {
       id: 'urology',
       name: 'Robotic Urology',
       description: 'Minimally invasive urological procedures with precision',
       icon: Target,
-      image: 'https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=400'
+      image: p2
     },
     {
       id: 'gi',
@@ -260,19 +311,9 @@ return ()=>clearInterval(interval)
     }
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    const handleVisaSelect = (visa) => {
+    setSelectedVisa(visa);
+    setIsDropdownOpen(false);
   };
 
   return (
@@ -369,7 +410,7 @@ return ()=>clearInterval(interval)
         {diseases.map((disease, index) => (
           <div
             key={index}
-            className="bg-blue-600 hover:bg-blue-100 text-white hover:text-black font-medium text-center py-4 px-2 rounded-xl shadow-md transition-all duration-300"
+           className={`${colors[index % colors.length]} text-white hover:text-black font-medium text-center py-4 px-2 rounded-xl shadow-md transition-all duration-300 cursor-pointer`}
           >
             {disease}
           </div>
@@ -383,7 +424,7 @@ return ()=>clearInterval(interval)
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Specialties
+             About Us
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We offer comprehensive robotic surgery services across multiple specialties, 
@@ -430,126 +471,137 @@ return ()=>clearInterval(interval)
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-blue-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Why Choose RoboSurgery?
-            </h2>
-            <p className="text-lg text-blue-100 max-w-3xl mx-auto">
-              We combine cutting-edge technology with compassionate care to deliver 
-              the best possible surgical outcomes for our patients.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Award,
-                title: 'Award-Winning Care',
-                description: 'Recognized nationally for surgical excellence and patient satisfaction'
-              },
-              {
-                icon: Users,
-                title: 'Expert Surgeons',
-                description: 'Board-certified specialists with extensive robotic surgery experience'
-              },
-              {
-                icon: Shield,
-                title: 'Advanced Technology',
-                description: 'State-of-the-art da Vinci robotic systems and latest innovations'
-              },
-              {
-                icon: Clock,
-                title: 'Faster Recovery',
-                description: 'Minimally invasive techniques for quicker healing and return to life'
-              }
-            ].map((feature, index) => {
-              const IconComponent = feature.icon;
-              return (
-                <div key={index} className="text-center group">
-                  <div className="bg-blue-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-700 transition-colors">
-                    <IconComponent className="h-8 w-8 text-blue-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-blue-100">{feature.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+  
 
       {/* Patient Testimonials */}
-      <section id="testimonials" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What Our Patients Say
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Real stories from real patients who have experienced the benefits of robotic surgery.
-            </p>
-          </div>
+       <section  id='service' className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Our Premium Services
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+            Comprehensive visa and immigration services designed to make your journey smooth and successful.
+          </p>
           
-          <div className="relative max-w-4xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-              <div className="flex items-center justify-center mb-6">
-                {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                  <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              
-              <blockquote className="text-lg md:text-xl text-gray-700 text-center mb-8 leading-relaxed">
-                "{testimonials[currentTestimonial].text}"
-              </blockquote>
-              
-              <div className="flex items-center justify-center space-x-4">
-                <img
-                  src={testimonials[currentTestimonial].image}
-                  alt={testimonials[currentTestimonial].name}
-                  className="w-16 h-16 rounded-full object-cover"
+          {/* Visa Dropdown */}
+          <div className="max-w-md mx-auto relative">
+            <label className="block text-sm font-medium text-gray-700 mb-2 text-left">
+              Select Your Visa Type
+            </label>
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="w-full bg-white border border-gray-300 rounded-lg px-4 py-3 text-left shadow-sm hover:shadow-md transition-shadow duration-200 flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+                <span className="flex items-center">
+                  {selectedVisa ? (
+                    <>
+                      <span className="mr-2 text-lg">
+                        {visaOptions.find(v => v.value === selectedVisa)?.icon}
+                      </span>
+                      <span className="text-gray-900">
+                        {visaOptions.find(v => v.value === selectedVisa)?.label}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-gray-500">Choose your visa type...</span>
+                  )}
+                </span>
+                <ChevronDown 
+                  className={`h-5 w-5 text-gray-400 transition-transform duration-200 ${
+                    isDropdownOpen ? 'transform rotate-180' : ''
+                  }`} 
                 />
-                <div className="text-center">
-                  <div className="font-semibold text-gray-900">
-                    {testimonials[currentTestimonial].name}
-                  </div>
-                  <div className="text-gray-600 text-sm">
-                    {testimonials[currentTestimonial].procedure}
-                  </div>
+              </button>
+              
+              {isDropdownOpen && (
+                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                  {visaOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => handleVisaSelect(option.value)}
+                      className="w-full px-4 py-3 text-left hover:bg-blue-50 flex items-center transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg"
+                    >
+                      <span className="mr-3 text-lg">{option.icon}</span>
+                      <span className="text-gray-900">{option.label}</span>
+                    </button>
+                  ))}
                 </div>
-              </div>
-            </div>
-            
-            <button
-              onClick={prevTestimonial}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 group"
-            >
-              <ChevronLeft className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
-            </button>
-            
-            <button
-              onClick={nextTestimonial}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 group"
-            >
-              <ChevronRight className="h-6 w-6 text-gray-600 group-hover:text-blue-600" />
-            </button>
-            
-            <div className="flex justify-center mt-8 space-x-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentTestimonial ? 'bg-blue-600' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
+              )}
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 text-center group hover:scale-105 transform "
+            >
+              <div className="flex justify-center mb-4">
+                <div className="p-3 bg-gray-50 rounded-full group-hover:bg-blue-50 transition-colors duration-300">
+                  {service.icon}
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                {service.title}
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Selected Visa Info */}
+        {selectedVisa && (
+          <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-l-4 border-blue-600">
+            <div className="flex items-center justify-center mb-6">
+              <div className="flex items-center space-x-3">
+                <span className="text-3xl">
+                  {visaOptions.find(v => v.value === selectedVisa)?.icon}
+                </span>
+                <h3 className="text-2xl font-bold text-gray-900">
+                  {visaOptions.find(v => v.value === selectedVisa)?.label} Selected
+                </h3>
+                <CheckCircle className="h-8 w-8 text-green-500" />
+              </div>
+            </div>
+            
+            <div className="text-center">
+              <p className="text-lg text-gray-700 mb-6">
+                Great choice! Our expert team will guide you through the entire {' '}
+                {visaOptions.find(v => v.value === selectedVisa)?.label.toLowerCase()} application process.
+              </p>
+              
+              <div className="flex flex-wrap justify-center gap-4 mb-8">
+                <div className="flex items-center space-x-2 bg-blue-50 px-4 py-2 rounded-full">
+                  <Star className="h-4 w-4 text-blue-600" />
+                  <span className="text-sm text-blue-800">Expert Consultation</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-green-50 px-4 py-2 rounded-full">
+                  <CheckCircle className="h-4 w-4 text-green-600" />
+                  <span className="text-sm text-green-800">Document Review</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-purple-50 px-4 py-2 rounded-full">
+                  <Clock className="h-4 w-4 text-purple-600" />
+                  <span className="text-sm text-purple-800">Quick Processing</span>
+                </div>
+              </div>
+              
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
+                Get Started Now
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+
+
 
       {/* Meet Our Surgeons */}
       <section id="surgeons" className="py-20 bg-white">
